@@ -1,0 +1,4 @@
+- Aproximacion de p,q y r en Octave
+- Método para leer el archivo de excel y pasarlo a un diccionario[fecha][ubicación] = precio 
+- Encontrar error en el programa de la red difusa para que grafique bien. Decidir resolución--> Número de pasos que se van a graficar, mínimo 100, en promedio 500 o hasta 1000
+- Adaptar método del algoritmo genético para que pueda trabajar con la red difusa.
