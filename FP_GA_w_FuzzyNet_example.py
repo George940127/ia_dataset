@@ -11,6 +11,7 @@ from mpl_toolkits.mplot3d.axes3d import get_test_data
 from matplotlib import cm
 import math 
 
+#hola probando
 #Data position in array
 """M1(0), DE1(1)
 M2(2), DE2(3)

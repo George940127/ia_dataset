@@ -7,6 +7,7 @@ import time
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
+import csv
 from matplotlib import cm
 
 
@@ -36,12 +37,28 @@ class SurfaceAdjustment:
 
     def createZ_ReferenceDataFrame(self):
         "Convert csv data file in a Data Frame through Pandas Library"
-        dataFrame = pd.read_csv("C:\\Users\\roxy_\\Documents\\MCC\\2022-1\\Inteligencia Artificial\\Proyecto\\DatosParaGraficarUnPlano.csv", index_col = "id")
+        dataFrame = pd.read_csv("C:\\Users\\roxy_\\Documents\\MCC\\2022-1\\Inteligencia Artificial\\Proyecto\\DatosParaGraficarUnPlano.csv", index_col = "id")  #csv del repo
         #print(f"dataFrame = {dataFrame}")
         float_DF = dataFrame.astype(dtype='float', copy = True, errors='raise')
-        return float_DF
+        
+        # lista de mis headers en de colonias y fechas
+        col_list = dataFrame['id'].tolist()
+        print(col_list)
 
-    def Create_TakagiSugenoSurface(self,parametersList): #parametersList = [m1,m2,m3,m4,m5,m6,d1,d2,d3,d4,d5,d6,p1,p2,p3,p4,p5,p6,p7,p8,p9,q1,q2,q3,q4,q5,q6,q7,q8,q9,r1,r2,r3,r4,r5,r6,r7,r8,r9]
+        with open('Datos_colonia.csv', newline='') as f:
+          reader = csv.reader(f)
+          fecha_list = next(reader)  
+  
+        del fecha_list[0]
+        print(fecha_list)
+        return float_DF, fecha_list, col_list
+       
+
+    def Create_TakagiSugenoSurface(self,parametersList, col_list, fecha_list ): #parametersList = [m1,m2,m3,m4,m5,m6,d1,d2,d3,d4,d5,d6,p1,p2,p3,p4,p5,p6,p7,p8,p9,q1,q2,q3,q4,q5,q6,q7,q8,q9,r1,r2,r3,r4,r5,r6,r7,r8,r9]
+        #fecha_list = ['sept-20','oct-20'...'mar-22']
+        #col_list = ['Balcones de santa maria'... 'Puerta de Hierro']
+
+
         #self.plotResolution = 11
         m1 = parametersList[0]
         m2 = parametersList[1]
@@ -92,38 +109,40 @@ class SurfaceAdjustment:
         mf4 = []
         mf5 = []
         mf6 = []
-        inf1 = [[0] * 11  for i in range(11)]
-        inf2 = [[0] * 11  for i in range(11)]
-        inf3 = [[0] * 11  for i in range(11)]
-        inf4 = [[0] * 11  for i in range(11)]
-        inf5 = [[0] * 11  for i in range(11)]
-        inf6 = [[0] * 11  for i in range(11)]
-        inf7 = [[0] * 11  for i in range(11)]
-        inf8 = [[0] * 11  for i in range(11)]
-        inf9 = [[0] * 11  for i in range(11)]
-        reg1 = [[0] * 11  for i in range(11)]
-        reg2 = [[0] * 11  for i in range(11)]
-        reg3 = [[0] * 11  for i in range(11)]
-        reg4 = [[0] * 11  for i in range(11)]
-        reg5 = [[0] * 11  for i in range(11)]
-        reg6 = [[0] * 11  for i in range(11)]
-        reg7 = [[0] * 11  for i in range(11)]
-        reg8 = [[0] * 11  for i in range(11)]
-        reg9 = [[0] * 11  for i in range(11)]
-        a = [[0] * 11  for i in range(11)]
-        b = [[0] * 11  for i in range(11)]
-        z = [[0] * 11  for i in range(11)]
+        inf1 = [[0] * 19  for i in range(43)]
+        inf2 = [[0] * 19  for i in range(43)]
+        inf3 = [[0] * 19  for i in range(43)]
+        inf4 = [[0] * 19  for i in range(43)]
+        inf5 = [[0] * 19  for i in range(43)]
+        inf6 = [[0] * 19  for i in range(43)]
+        inf7 = [[0] * 19  for i in range(43)]
+        inf8 = [[0] * 19  for i in range(43)]
+        inf9 = [[0] * 19  for i in range(43)]
+        reg1 = [[0] * 19  for i in range(43)]
+        reg2 = [[0] * 19  for i in range(43)]
+        reg3 = [[0] * 19  for i in range(43)]
+        reg4 = [[0] * 19  for i in range(43)]
+        reg5 = [[0] * 19  for i in range(43)]
+        reg6 = [[0] * 19  for i in range(43)]
+        reg7 = [[0] * 19  for i in range(43)]
+        reg8 = [[0] * 19  for i in range(43)]
+        reg9 = [[0] * 19  for i in range(43)]
+        a = [[0] * 19  for i in range(43)]
+        b = [[0] * 19  for i in range(43)]
+        z = [[0] * 19  for i in range(43)]
 
         x = []
         y = []
         # for n in range(1,self.plotResolution+1):
         #     x.append(n/self.plotResolution)
         #     y.append(n/self.plotResolution)
+        
 
-        for i in range(0,11):
-            for j in range(0,11):
-                x.append(i/11)
-                y.append(j/11)
+
+        for i in range(0,43):
+            for j in range(0,19):
+                x.append(i/43)
+                y.append(j/19) 
 
                 #Parameterized Gaussian Membership Functions
                 mf1.append(pow(math.e,-0.5*pow((x[i]-m1)/d1,2)))
@@ -162,10 +181,12 @@ class SurfaceAdjustment:
                 a[i][j] = reg1[i][j] + reg2[i][j] + reg3[i][j] + reg4[i][j] + reg5[i][j] + reg6[i][j] + reg7[i][j] + reg8[i][j] + reg9[i][j]
                 z[i][j] = a[i][j] / b[i][j]
 
+
+
         Z = pd.DataFrame(data=z)
         float_Z = Z.astype(dtype='float', copy = True, errors='raise')
-        float_Z.columns = ['cero', 'uno', 'dos', 'tres','cuatro', 'cinco','seis','siete','ocho','nueve', 'diez']
-        float_Z.index = ['id_0','id_1','id_2','id_3','id_4','id_5','id_6','id_7','id_8','id_9','id_10']
+        float_Z.columns = col_list
+        float_Z.index = fecha_list
         #print(f"Result TS --> Z = {float_Z}")
         return float_Z
 
@@ -191,8 +212,8 @@ class SurfaceAdjustment:
         self.ax1.set_zlabel('Precio del inmueble')
        # X = np.arange(1/self.plotResolution, 1 + 1/self.plotResolution, 1/self.plotResolution)
        # Y = np.arange(1/self.plotResolution, 1 + 1/self.plotResolution, 1/self.plotResolution)
-        X = np.arange(0,11,1)
-        Y = np.arange(0,11,1)
+        X = np.arange(0,19,1)
+        Y = np.arange(0,43,1)
         X, Y = np.meshgrid(X, Y)
         refZ = np.array(z1_RefValues) #Convert a Data Frame in an array
         z1_CalculatedValues = self.Create_TakagiSugenoSurface(chromosome)
@@ -239,10 +260,10 @@ class SurfaceAdjustment:
         # for n in range(1,self.plotResolution+1):
         #     x.append(n/self.plotResolution)
         #     y.append(n/self.plotResolution)
-        for i in range(0,11):
-            for j in range(0,11):
-                x.append(i/11)
-                y.append(j/11)
+        for i in range(0,43): ########## cambiar
+            for j in range(0,19):          ##############
+                x.append(i/43) 
+                y.append(j/19)
 
                 mf1.append(pow(math.e,-0.5*pow((x[i]-m1)/d1,2)))
                 mf2.append(pow(math.e,-0.5*pow((x[i]-m2)/d2,2)))
@@ -252,7 +273,7 @@ class SurfaceAdjustment:
                 mf5.append(pow(math.e,-0.5*pow((y[j]-m5)/d5,2)))
                 mf6.append(pow(math.e,-0.5*pow((y[j]-m6)/d6,2)))
         
-        fuzzy_X = np.arange(0, 11,11/121)
+        fuzzy_X = np.arange(0, 11,11/121)  ######################
         self.ax3.plot(fuzzy_X, mf1, label = 'linear', color = "red")
         self.ax3.plot(fuzzy_X, mf2, label = 'linear', color = "blue")
         self.ax3.plot(fuzzy_X, mf3, label = 'linear', color = "green")
@@ -291,8 +312,8 @@ class SurfaceAdjustment:
         self.ax1.set_zlabel('Precio del inmueble')
        # X = np.arange(1/self.plotResolution, 1 + 1/self.plotResolution, 1/self.plotResolution)
        # Y = np.arange(1/self.plotResolution, 1 + 1/self.plotResolution, 1/self.plotResolution)
-        X = np.arange(0,11,1)
-        Y = np.arange(0,11,1)
+        X = np.arange(0,19,1)
+        Y = np.arange(0,43,1)
         X, Y = np.meshgrid(X, Y)
        # refZ = np.array(z1_RefValues) #Convert a Data Frame in an array
       #  z1_CalculatedValues = self.Create_TakagiSugenoSurface(chromosome)
@@ -339,10 +360,10 @@ class SurfaceAdjustment:
         # for n in range(1,self.plotResolution+1):
         #     x.append(n/self.plotResolution)
         #     y.append(n/self.plotResolution)
-        for i in range(0,11):
-            for j in range(0,11):
-                x.append(i/11)
-                y.append(j/11)
+        for i in range(0,43):
+            for j in range(0,19):
+                x.append(i/43)
+                y.append(j/19)
 
                 mf1.append(pow(math.e,-0.5*pow((x[i]-m1)/d1,2)))
                 mf2.append(pow(math.e,-0.5*pow((x[i]-m2)/d2,2)))
@@ -351,8 +372,8 @@ class SurfaceAdjustment:
                 mf4.append(pow(math.e,-0.5*pow((y[j]-m4)/d4,2)))
                 mf5.append(pow(math.e,-0.5*pow((y[j]-m5)/d5,2)))
                 mf6.append(pow(math.e,-0.5*pow((y[j]-m6)/d6,2)))
-        
-        fuzzy_X = np.arange(0, 11,11/121)
+         
+        fuzzy_X = np.arange(0, 11,11/121)        ##############
         self.ax3.plot(fuzzy_X, mf1, label = 'linear', color = "red")
         self.ax3.plot(fuzzy_X, mf2, label = 'linear', color = "blue")
         self.ax3.plot(fuzzy_X, mf3, label = 'linear', color = "green")
