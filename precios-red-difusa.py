@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Jun 23 17:32:19 2021
-
-@author: ArturoLugo
+@author: Equipo 2
 """
 
 import numpy as np, random, operator, pandas as pd, matplotlib.pyplot as plt
