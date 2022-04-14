@@ -12,7 +12,6 @@ from matplotlib import cm
 
 
 
-
 class SurfaceAdjustment:
     
     plotResolution = 40
@@ -110,27 +109,27 @@ class SurfaceAdjustment:
         mf4 = []
         mf5 = []
         mf6 = []
-        inf1 = [[0] * 11  for i in range(11)]
-        inf2 = [[0] * 11  for i in range(11)]
-        inf3 = [[0] * 11  for i in range(11)]
-        inf4 = [[0] * 11  for i in range(11)]
-        inf5 = [[0] * 11  for i in range(11)]
-        inf6 = [[0] * 11  for i in range(11)]
-        inf7 = [[0] * 11  for i in range(11)]
-        inf8 = [[0] * 11  for i in range(11)]
-        inf9 = [[0] * 11  for i in range(11)]
-        reg1 = [[0] * 11  for i in range(11)]
-        reg2 = [[0] * 11  for i in range(11)]
-        reg3 = [[0] * 11  for i in range(11)]
-        reg4 = [[0] * 11  for i in range(11)]
-        reg5 = [[0] * 11  for i in range(11)]
-        reg6 = [[0] * 11  for i in range(11)]
-        reg7 = [[0] * 11  for i in range(11)]
-        reg8 = [[0] * 11  for i in range(11)]
-        reg9 = [[0] * 11  for i in range(11)]
-        a = [[0] * 11  for i in range(11)]
-        b = [[0] * 11  for i in range(11)]
-        z = [[0] * 11  for i in range(11)]
+        inf1 = [[0] * 19  for i in range(43)]
+        inf2 = [[0] * 19  for i in range(43)]
+        inf3 = [[0] * 19  for i in range(43)]
+        inf4 = [[0] * 19  for i in range(43)]
+        inf5 = [[0] * 19  for i in range(43)]
+        inf6 = [[0] * 19  for i in range(43)]
+        inf7 = [[0] * 19  for i in range(43)]
+        inf8 = [[0] * 19  for i in range(43)]
+        inf9 = [[0] * 19  for i in range(43)]
+        reg1 = [[0] * 19  for i in range(43)]
+        reg2 = [[0] * 19  for i in range(43)]
+        reg3 = [[0] * 19  for i in range(43)]
+        reg4 = [[0] * 19  for i in range(43)]
+        reg5 = [[0] * 19  for i in range(43)]
+        reg6 = [[0] * 19  for i in range(43)]
+        reg7 = [[0] * 19  for i in range(43)]
+        reg8 = [[0] * 19  for i in range(43)]
+        reg9 = [[0] * 19  for i in range(43)]
+        a = [[0] * 19  for i in range(43)]
+        b = [[0] * 19  for i in range(43)]
+        z = [[0] * 19  for i in range(43)]
 
         x = []
         y = []
@@ -140,10 +139,10 @@ class SurfaceAdjustment:
         
 
 
-        for i in range(0,11):
-            for j in range(0,11):
-                x.append(i/11)
-                y.append(j/11)
+        for i in range(0,43):
+            for j in range(0,19):
+                x.append(i/43)
+                y.append(j/19) 
 
                 #Parameterized Gaussian Membership Functions
                 mf1.append(pow(math.e,-0.5*pow((x[i]-m1)/d1,2)))
@@ -261,10 +260,10 @@ class SurfaceAdjustment:
         # for n in range(1,self.plotResolution+1):
         #     x.append(n/self.plotResolution)
         #     y.append(n/self.plotResolution)
-        for i in range(0,11): ########## cambiar
-            for j in range(0,11):          ##############
-                x.append(i/11) 
-                y.append(j/11)
+        for i in range(0,43): ########## cambiar
+            for j in range(0,19):          ##############
+                x.append(i/43) 
+                y.append(j/19)
 
                 mf1.append(pow(math.e,-0.5*pow((x[i]-m1)/d1,2)))
                 mf2.append(pow(math.e,-0.5*pow((x[i]-m2)/d2,2)))
@@ -274,7 +273,7 @@ class SurfaceAdjustment:
                 mf5.append(pow(math.e,-0.5*pow((y[j]-m5)/d5,2)))
                 mf6.append(pow(math.e,-0.5*pow((y[j]-m6)/d6,2)))
         
-        fuzzy_X = np.arange(0, 11,11/121)
+        fuzzy_X = np.arange(0, 11,11/121)  ######################
         self.ax3.plot(fuzzy_X, mf1, label = 'linear', color = "red")
         self.ax3.plot(fuzzy_X, mf2, label = 'linear', color = "blue")
         self.ax3.plot(fuzzy_X, mf3, label = 'linear', color = "green")
@@ -313,8 +312,8 @@ class SurfaceAdjustment:
         self.ax1.set_zlabel('Precio del inmueble')
        # X = np.arange(1/self.plotResolution, 1 + 1/self.plotResolution, 1/self.plotResolution)
        # Y = np.arange(1/self.plotResolution, 1 + 1/self.plotResolution, 1/self.plotResolution)
-        X = np.arange(0,11,1)
-        Y = np.arange(0,11,1)
+        X = np.arange(0,19,1)
+        Y = np.arange(0,43,1)
         X, Y = np.meshgrid(X, Y)
        # refZ = np.array(z1_RefValues) #Convert a Data Frame in an array
       #  z1_CalculatedValues = self.Create_TakagiSugenoSurface(chromosome)
@@ -361,10 +360,10 @@ class SurfaceAdjustment:
         # for n in range(1,self.plotResolution+1):
         #     x.append(n/self.plotResolution)
         #     y.append(n/self.plotResolution)
-        for i in range(0,11):
-            for j in range(0,11):
-                x.append(i/11)
-                y.append(j/11)
+        for i in range(0,43):
+            for j in range(0,19):
+                x.append(i/43)
+                y.append(j/19)
 
                 mf1.append(pow(math.e,-0.5*pow((x[i]-m1)/d1,2)))
                 mf2.append(pow(math.e,-0.5*pow((x[i]-m2)/d2,2)))
@@ -373,8 +372,8 @@ class SurfaceAdjustment:
                 mf4.append(pow(math.e,-0.5*pow((y[j]-m4)/d4,2)))
                 mf5.append(pow(math.e,-0.5*pow((y[j]-m5)/d5,2)))
                 mf6.append(pow(math.e,-0.5*pow((y[j]-m6)/d6,2)))
-        
-        fuzzy_X = np.arange(0, 11,11/121)
+         
+        fuzzy_X = np.arange(0, 11,11/121)        ##############
         self.ax3.plot(fuzzy_X, mf1, label = 'linear', color = "red")
         self.ax3.plot(fuzzy_X, mf2, label = 'linear', color = "blue")
         self.ax3.plot(fuzzy_X, mf3, label = 'linear', color = "green")
